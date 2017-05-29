@@ -13,6 +13,7 @@
 using namespace cv;
 using namespace std;
 
+//#define SOCKET_SEND_IMAGE
 
 void verticalProject(const Mat& src, vector<unsigned long>& dst)
 {
@@ -47,6 +48,8 @@ template<typename T>
 
 int main(int argc, char **argv)
 {
+	///声明变量
+	//数据采集
 	raspicam::RaspiCam_Cv cam;
 	Mat rawIm, railIm;
 	cam.set(CV_CAP_PROP_FORMAT, CV_8UC1);
@@ -54,13 +57,32 @@ int main(int argc, char **argv)
 	cam.set(CV_CAP_PROP_FRAME_HEIGHT, cam.get(CV_CAP_PROP_FRAME_HEIGHT) * 0.2);
 	int rawImHeight = cam.get(CV_CAP_PROP_FRAME_HEIGHT),
 		rawImWitdh = cam.get(CV_CAP_PROP_FRAME_WIDTH);
-
+	
+	//算法相关
+	//剪切导轨位置图像
+	float railRegionHeight = 0.05;
+	Rect railRegion(0,
+		int(rawImHeight*(0.5 - railRegionHeight / 2)),
+		rawImWitdh,
+		rawImHeight*railRegionHeight);
+	//预处理
+	medianBlur(railIm, railIm, 5);
+	int structElementSize = 3;
+	Mat element = getStructuringElement(MORPH_ELLIPSE,  
+		Size(2*structElementSize + 1, 2*structElementSize + 1),  
+		Point(structElementSize, structElementSize));
+	//将灰度投影到水平方向
+	vector<unsigned long> verticalVector;
+	
+	//初始化连接
 	if (!cam.open())
 		return 1;
 
+#ifdef SOCKET_SEND_IMAGE
 	cout << "socket connecting..." << endl;
 	SocketMatTransmissionClient socketMat;
 	socketMat.begin("192.168.2.100");
+#endif // SOCKET_SEND_IMAGE
 
 	double startTime, endTime;
 	while (1)
@@ -76,25 +98,14 @@ int main(int argc, char **argv)
 		/// 小球定位算法开始
 
 		//剪切导轨位置图像
-		float railRegionHeight = 0.05;
-		Rect railRegion(0,
-			int(rawImHeight*(0.5 - railRegionHeight / 2)),
-			rawImWitdh,
-			rawImHeight*railRegionHeight);
 		railIm = rawIm(railRegion);
 		
 		//预处理
-		medianBlur(railIm, railIm, 5);
-		int structElementSize = 3;
-		Mat element = getStructuringElement(MORPH_ELLIPSE,  
-			Size(2*structElementSize + 1, 2*structElementSize + 1),  
-			Point(structElementSize, structElementSize));
 		erode(railIm, railIm, element);
 //		equalizeHist(railIm, railIm);
 //		threshold(railIm, railIm, 0, 255, CV_THRESH_OTSU);
 
 		//将灰度投影到水平方向
-		vector<unsigned long> verticalVector;
 		verticalProject(railIm, verticalVector);
 
 //		//绘制亮度曲线图
@@ -109,13 +120,17 @@ int main(int argc, char **argv)
 
 		///小球定位算法结束
 		
+#ifdef SOCKET_SEND_IMAGE
 		//发送图像，用于测试
 		socketMat.transmit(railIm, 90);
+#endif // SOCKET_SEND_IMAGE
 
 		endTime = clock();
 		cout << "fps: " << CLOCKS_PER_SEC / (endTime - startTime) << endl;
 	}
+#ifdef SOCKET_SEND_IMAGE
 	socketMat.disconnect();
+#endif // SOCKET_SEND_IMAGE
 	cam.release();
 }
 

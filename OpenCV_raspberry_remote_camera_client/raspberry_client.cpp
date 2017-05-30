@@ -7,45 +7,16 @@
 
 #include "SocketMatTransmissionClient.h"  
 
+#include "my_opencv.h"
 #include "my_math.h"
 #include <algorithm>
-#include "wiringSerial.h"
+#include "uart_num.h"
+
 
 using namespace cv;
 using namespace std;
 
-#define SOCKET_SEND_IMAGE
-
-void verticalProject(const Mat& src, vector<unsigned long>& dst)
-{
-	CV_Assert(src.depth() != sizeof(unsigned char));
-	int i, j;
-	const unsigned char* p;
-	dst.resize(src.cols);
-	for (j = 0; j < src.cols; j++) {
-		dst[j] = 0;
-		for (i = 0; i < src.rows; i++) {
-			p = src.ptr<unsigned char>(i);
-			dst[j] += p[j];
-		}
-	}
-}
-
-template<typename T>
-	void plotSimple(const vector<T> src, Mat& dst, unsigned int plotHeight = 256)
-{
-	dst = Mat(Size(src.size(), plotHeight), CV_8UC1, Scalar(0));
-	T maxVal = *max_element(src.begin(), src.end());
-	for (int i = 0; i < src.size(); i++)
-	{
-		unsigned int y;
-		y = plotHeight - 1 - (float)src[i] * (plotHeight - 1) / maxVal;
-		for (int j = y; j < plotHeight; j++)
-		{
-			dst.at<uchar>(j, i) = 255;
-		}
-	}
-}
+//#define SOCKET_SEND_IMAGE
 
 int main(int argc, char **argv)
 {
@@ -86,6 +57,11 @@ int main(int argc, char **argv)
 	SocketMatTransmissionClient socketMat;
 	socketMat.begin("192.168.2.100");
 #endif // SOCKET_SEND_IMAGE
+	
+	
+	//初始化串口
+	UartNum<float> uart;
+	uart.begin();
 
 	double startTime, endTime;
 	while (1)
@@ -121,6 +97,8 @@ int main(int argc, char **argv)
 		int minBrightnessPos = distance(verticalVector.begin(), minBrightnessIt);
 		float pos = (float(minBrightnessPos) - verticalVector.size() / 2)*railLength / verticalVector.size() + camCenterShift;
 		cout << pos << endl;
+//		uart.printf("ok!!!\r\n");
+		uart.sendNum(&pos, 1);
 
 		///小球定位算法结束
 		

@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClCompile Include="raspberry_client.cpp" />
     <ClCompile Include="SocketMatTransmissionClient.cpp" />
+    <ClCompile Include="util\my_opencv.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
@@ -79,6 +80,8 @@
   <ItemGroup>
     <ClInclude Include="SocketMatTransmissionClient.h" />
     <ClInclude Include="util\my_math.h" />
+    <ClInclude Include="util\my_opencv.h" />
+    <ClInclude Include="util\uart_num.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -4,8 +4,8 @@
 cmake_minimum_required(VERSION 2.7)
 project(OpenCVCameraDemo)
 set(LIBRARIES_FROM_REFERENCES "")
-add_executable(OpenCVCameraDemo raspberry_client.cpp SocketMatTransmissionClient.cpp)
-target_link_libraries(OpenCVCameraDemo "${LIBRARIES_FROM_REFERENCES}")
+add_executable(OpenCVCameraDemo raspberry_client.cpp SocketMatTransmissionClient.cpp util/my_opencv.cpp)
+target_link_libraries(OpenCVCameraDemo -lwiringPi "${LIBRARIES_FROM_REFERENCES}")
 
 find_package(OpenCV REQUIRED)
 
@@ -13,3 +13,4 @@ ocv_include_directories("${OpenCV_SOURCE_DIR}/include")
 ocv_include_modules_recurse(${OPENCV_CPP_SAMPLES_REQUIRED_DEPS})
 target_link_libraries(OpenCVCameraDemo -L${CMAKE_SOURCE_DIR}/../raspicam-0.1.6/build/Debug/src ${OpenCV_LIBS} raspicam_cv raspicam "${LIBRARIES_FROM_REFERENCES}")
 include_directories(../raspicam-0.1.6/src util)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ")

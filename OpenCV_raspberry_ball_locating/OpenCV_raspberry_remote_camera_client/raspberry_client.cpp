@@ -3,7 +3,6 @@
 #include <raspicam_cv.h>
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
-#include "time.h"
 
 #include "SocketMatTransmissionClient.h"  
 
@@ -16,6 +15,7 @@
 using namespace cv;
 using namespace std;
 
+#define STDIO_DEBUG
 //#define SOCKET_SEND_IMAGE
 
 int main(int argc, char **argv)
@@ -25,9 +25,9 @@ int main(int argc, char **argv)
 	raspicam::RaspiCam_Cv cam;
 	Mat rawIm, railIm;
 	cam.set(CV_CAP_PROP_FORMAT, CV_8UC1);
-	cam.set(CV_CAP_PROP_FRAME_WIDTH, cam.get(CV_CAP_PROP_FRAME_WIDTH) * 0.5);
-	cam.set(CV_CAP_PROP_FRAME_HEIGHT, cam.get(CV_CAP_PROP_FRAME_HEIGHT) * 0.5);
-	int rawImHeight = cam.get(CV_CAP_PROP_FRAME_HEIGHT),
+	cam.set(CV_CAP_PROP_FRAME_WIDTH, cam.get(CV_CAP_PROP_FRAME_WIDTH) * 0.2);
+	cam.set(CV_CAP_PROP_FRAME_HEIGHT, cam.get(CV_CAP_PROP_FRAME_HEIGHT) * 0.2);
+	const int rawImHeight = cam.get(CV_CAP_PROP_FRAME_HEIGHT),
 		rawImWitdh = cam.get(CV_CAP_PROP_FRAME_WIDTH);
 	
 	//算法相关
@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 		rawImWitdh,
 		rawImHeight*railRegionHeight);
 	//预处理
-	int structElementSize = 3;
+	const int structElementSize = 1;
 	Mat element = getStructuringElement(MORPH_ELLIPSE,  
 		Size(2*structElementSize + 1, 2*structElementSize + 1),  
 		Point(structElementSize, structElementSize));
@@ -63,11 +63,9 @@ int main(int argc, char **argv)
 	UartNum<float> uart;
 	uart.begin();
 
-	double startTime, endTime;
+	double timeStart = 0, timeEnd = 0;
 	while (1)
 	{
-		startTime = clock();
-		waitKey(30);
 		cam.grab();
 		cam.retrieve(rawIm);
 
@@ -96,8 +94,14 @@ int main(int argc, char **argv)
 		vector<unsigned long>::iterator minBrightnessIt = min_element(verticalVector.begin(), verticalVector.end());
 		int minBrightnessPos = distance(verticalVector.begin(), minBrightnessIt);
 		float pos = (float(minBrightnessPos) - verticalVector.size() / 2)*railLength / verticalVector.size() + camCenterShift;
-		cout << pos << endl;
-//		uart.printf("ok!!!\r\n");
+		
+#ifdef STDIO_DEBUG
+		//计算帧率
+		cout << "fps: " << 1.0 / (timeEnd - timeStart)*(double)getTickFrequency() << '\t' << pos << endl;
+		timeStart = timeEnd;
+		timeEnd = (double)getTickCount();
+#endif // STDIO_DEBUG
+		
 		uart.sendNum(&pos, 1);
 
 		///小球定位算法结束
@@ -106,9 +110,8 @@ int main(int argc, char **argv)
 		//发送图像，用于测试
 		socketMat.transmit(railIm, 90);
 #endif // SOCKET_SEND_IMAGE
-
-		endTime = clock();
-		cout << "fps: " << CLOCKS_PER_SEC / (endTime - startTime) << endl;
+		
+		
 	}
 #ifdef SOCKET_SEND_IMAGE
 	socketMat.disconnect();

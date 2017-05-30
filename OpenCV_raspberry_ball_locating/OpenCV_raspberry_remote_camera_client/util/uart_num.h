@@ -28,7 +28,6 @@ template<typename NumType = float>
 				std::cout << "serial err\n";
 				return;
 			}
-			std::cout << "serial id is" << fd << std::endl;
 		}
 		
 		void printf(const char *fmt, ...)

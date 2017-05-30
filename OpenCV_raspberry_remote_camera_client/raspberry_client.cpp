@@ -9,6 +9,7 @@
 
 #include "my_math.h"
 #include <algorithm>
+#include "wiringSerial.h"
 
 using namespace cv;
 using namespace std;
@@ -60,13 +61,12 @@ int main(int argc, char **argv)
 	
 	//算法相关
 	//剪切导轨位置图像
-	float railRegionHeight = 0.05;
+	float railRegionHeight = 0.02, railRegionShift = -0.06;
 	Rect railRegion(0,
-		int(rawImHeight*(0.5 - railRegionHeight / 2)),
+		int(rawImHeight*(0.5 - railRegionHeight / 2 + railRegionShift)),
 		rawImWitdh,
 		rawImHeight*railRegionHeight);
 	//预处理
-	medianBlur(railIm, railIm, 5);
 	int structElementSize = 3;
 	Mat element = getStructuringElement(MORPH_ELLIPSE,  
 		Size(2*structElementSize + 1, 2*structElementSize + 1),  
@@ -101,6 +101,7 @@ int main(int argc, char **argv)
 		railIm = rawIm(railRegion);
 		
 		//预处理
+//		medianBlur(railIm, railIm, 3);
 		erode(railIm, railIm, element);
 //		equalizeHist(railIm, railIm);
 //		threshold(railIm, railIm, 0, 255, CV_THRESH_OTSU);

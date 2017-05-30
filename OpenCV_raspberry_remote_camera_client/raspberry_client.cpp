@@ -14,7 +14,7 @@
 using namespace cv;
 using namespace std;
 
-//#define SOCKET_SEND_IMAGE
+#define SOCKET_SEND_IMAGE
 
 void verticalProject(const Mat& src, vector<unsigned long>& dst)
 {
@@ -54,14 +54,14 @@ int main(int argc, char **argv)
 	raspicam::RaspiCam_Cv cam;
 	Mat rawIm, railIm;
 	cam.set(CV_CAP_PROP_FORMAT, CV_8UC1);
-	cam.set(CV_CAP_PROP_FRAME_WIDTH, cam.get(CV_CAP_PROP_FRAME_WIDTH) * 0.2);
-	cam.set(CV_CAP_PROP_FRAME_HEIGHT, cam.get(CV_CAP_PROP_FRAME_HEIGHT) * 0.2);
+	cam.set(CV_CAP_PROP_FRAME_WIDTH, cam.get(CV_CAP_PROP_FRAME_WIDTH) * 0.5);
+	cam.set(CV_CAP_PROP_FRAME_HEIGHT, cam.get(CV_CAP_PROP_FRAME_HEIGHT) * 0.5);
 	int rawImHeight = cam.get(CV_CAP_PROP_FRAME_HEIGHT),
 		rawImWitdh = cam.get(CV_CAP_PROP_FRAME_WIDTH);
 	
 	//算法相关
 	//剪切导轨位置图像
-	float railRegionHeight = 0.02, railRegionShift = -0.06;
+	float railRegionHeight = 0.008, railRegionShift = -0.06;
 	Rect railRegion(0,
 		int(rawImHeight*(0.5 - railRegionHeight / 2 + railRegionShift)),
 		rawImWitdh,
@@ -73,6 +73,9 @@ int main(int argc, char **argv)
 		Point(structElementSize, structElementSize));
 	//将灰度投影到水平方向
 	vector<unsigned long> verticalVector;
+	//小球位置计算，单位mm
+	const float railLength=300;
+	const float camCenterShift = -3.6;
 	
 	//初始化连接
 	if (!cam.open())
@@ -116,7 +119,7 @@ int main(int argc, char **argv)
 		//通过亮度曲线找到小球
 		vector<unsigned long>::iterator minBrightnessIt = min_element(verticalVector.begin(), verticalVector.end());
 		int minBrightnessPos = distance(verticalVector.begin(), minBrightnessIt);
-		float pos = (float(minBrightnessPos) - verticalVector.size() / 2) / verticalVector.size();
+		float pos = (float(minBrightnessPos) - verticalVector.size() / 2)*railLength / verticalVector.size() + camCenterShift;
 		cout << pos << endl;
 
 		///小球定位算法结束

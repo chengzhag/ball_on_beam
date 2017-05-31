@@ -15,7 +15,7 @@
 using namespace cv;
 using namespace std;
 
-#define STDIO_DEBUG
+//#define STDIO_DEBUG
 //#define SOCKET_SEND_IMAGE
 
 int main(int argc, char **argv)
@@ -25,20 +25,20 @@ int main(int argc, char **argv)
 	raspicam::RaspiCam_Cv cam;
 	Mat rawIm, railIm;
 	cam.set(CV_CAP_PROP_FORMAT, CV_8UC1);
-	cam.set(CV_CAP_PROP_FRAME_WIDTH, cam.get(CV_CAP_PROP_FRAME_WIDTH) * 0.2);
-	cam.set(CV_CAP_PROP_FRAME_HEIGHT, cam.get(CV_CAP_PROP_FRAME_HEIGHT) * 0.2);
+	cam.set(CV_CAP_PROP_FRAME_WIDTH, cam.get(CV_CAP_PROP_FRAME_WIDTH) * 0.5);
+	cam.set(CV_CAP_PROP_FRAME_HEIGHT, cam.get(CV_CAP_PROP_FRAME_HEIGHT) * 0.5);
 	const int rawImHeight = cam.get(CV_CAP_PROP_FRAME_HEIGHT),
 		rawImWitdh = cam.get(CV_CAP_PROP_FRAME_WIDTH);
 	
 	//算法相关
 	//剪切导轨位置图像
-	float railRegionHeight = 0.008, railRegionShift = -0.06;
+	float railRegionHeight = 0.01, railRegionShift = -0.06;
 	Rect railRegion(0,
 		int(rawImHeight*(0.5 - railRegionHeight / 2 + railRegionShift)),
 		rawImWitdh,
 		rawImHeight*railRegionHeight);
 	//预处理
-	const int structElementSize = 1;
+	const int structElementSize = 3;
 	Mat element = getStructuringElement(MORPH_ELLIPSE,  
 		Size(2*structElementSize + 1, 2*structElementSize + 1),  
 		Point(structElementSize, structElementSize));
@@ -78,8 +78,11 @@ int main(int argc, char **argv)
 		railIm = rawIm(railRegion);
 		
 		//预处理
+		morphologyEx(railIm, railIm, CV_MOP_ERODE, element);
+		GaussianBlur(railIm, railIm, Size(int(0.05*rawImWitdh) * 2 + 1, 1), int(0.02*rawImWitdh) * 2 + 1, 0);//以小球半径的两倍为窗口长度
+//		medianBlur(railIm, railIm, 9);
+//		morphologyEx(railIm, railIm, CV_MOP_DILATE, element);
 //		medianBlur(railIm, railIm, 3);
-		erode(railIm, railIm, element);
 //		equalizeHist(railIm, railIm);
 //		threshold(railIm, railIm, 0, 255, CV_THRESH_OTSU);
 

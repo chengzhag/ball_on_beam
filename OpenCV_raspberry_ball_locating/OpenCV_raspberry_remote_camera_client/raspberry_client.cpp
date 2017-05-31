@@ -25,14 +25,14 @@ int main(int argc, char **argv)
 	raspicam::RaspiCam_Cv cam;
 	Mat rawIm, railIm;
 	cam.set(CV_CAP_PROP_FORMAT, CV_8UC1);
-	cam.set(CV_CAP_PROP_FRAME_WIDTH, cam.get(CV_CAP_PROP_FRAME_WIDTH) * 0.5);
-	cam.set(CV_CAP_PROP_FRAME_HEIGHT, cam.get(CV_CAP_PROP_FRAME_HEIGHT) * 0.5);
+	cam.set(CV_CAP_PROP_FRAME_WIDTH, cam.get(CV_CAP_PROP_FRAME_WIDTH) * 1);
+	cam.set(CV_CAP_PROP_FRAME_HEIGHT, cam.get(CV_CAP_PROP_FRAME_HEIGHT) * 1);
 	const int rawImHeight = cam.get(CV_CAP_PROP_FRAME_HEIGHT),
 		rawImWitdh = cam.get(CV_CAP_PROP_FRAME_WIDTH);
 	
 	//算法相关
 	//剪切导轨位置图像
-	float railRegionHeight = 0.01, railRegionShift = -0.06;
+	float railRegionHeight = 0.003, railRegionShift = -0.06;
 	Rect railRegion(0,
 		int(rawImHeight*(0.5 - railRegionHeight / 2 + railRegionShift)),
 		rawImWitdh,
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 	vector<unsigned long> verticalVector;
 	//小球位置计算，单位mm
 	const float railLength=300;
-	const float camCenterShift = -3.6;
+	const float camCenterShift = -4;
 	
 	//初始化连接
 	if (!cam.open())
@@ -79,7 +79,7 @@ int main(int argc, char **argv)
 		
 		//预处理
 		morphologyEx(railIm, railIm, CV_MOP_ERODE, element);
-		GaussianBlur(railIm, railIm, Size(int(0.05*rawImWitdh) * 2 + 1, 1), int(0.02*rawImWitdh) * 2 + 1, 0);//以小球半径的两倍为窗口长度
+		GaussianBlur(railIm, railIm, Size(int(0.03*rawImWitdh) * 2 + 1, 1), int(0.02*rawImWitdh) * 2 + 1, 0);//以小球半径的两倍为窗口长度
 //		medianBlur(railIm, railIm, 9);
 //		morphologyEx(railIm, railIm, CV_MOP_DILATE, element);
 //		medianBlur(railIm, railIm, 3);
@@ -89,14 +89,30 @@ int main(int argc, char **argv)
 		//将灰度投影到水平方向
 		verticalProject(railIm, verticalVector);
 
-//		//绘制亮度曲线图
+		//绘制亮度曲线图
 //		Mat plotBrightness;
 //		plotSimple(verticalVector, plotBrightness);
 		
 		//通过亮度曲线找到小球
 		vector<unsigned long>::iterator minBrightnessIt = min_element(verticalVector.begin(), verticalVector.end());
 		int minBrightnessPos = distance(verticalVector.begin(), minBrightnessIt);
+		
+		//直接以极小值为中心
 		float pos = (float(minBrightnessPos) - verticalVector.size() / 2)*railLength / verticalVector.size() + camCenterShift;
+		
+//		//以峰周围+-0.1*rawImWitdh的面积中心。弃用，波动更大
+//		int peakStart = minBrightnessPos - 0.1*rawImWitdh, peakEnd;
+//		limitLow<int>(peakStart, 0);
+//		peakEnd = 2*minBrightnessPos - peakStart;
+//		unsigned long peakArea = 0, indexWeighted = 0;
+//		for (int i = peakStart; i < peakEnd; i++)
+//		{
+//			peakArea += verticalVector[i];
+//			indexWeighted += verticalVector[i]*i;
+//		}
+//		float peakCenter = indexWeighted / peakArea;
+//		float pos = (peakCenter - verticalVector.size() / 2)*railLength / verticalVector.size() + camCenterShift;
+		
 		
 #ifdef STDIO_DEBUG
 		//计算帧率

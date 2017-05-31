@@ -187,7 +187,7 @@ public:
 	}
 
 	//绑定数据处理函数
-	void attach(void(*numReceivedEvent)(UartNum*))
+	void attach(void(*numReceivedEvent)(UartNum<NumType, numBufSize>*))
 	{
 		this->numReceivedEvent.attach(numReceivedEvent);
 		hasEvent = true;
@@ -195,7 +195,7 @@ public:
 
 	//绑定数据处理成员函数
 	template<typename T>
-	void attach(T *pObj, void (T::*numReceivedEvent)(UartNum*))
+	void attach(T *pObj, void (T::*numReceivedEvent)(UartNum<NumType,numBufSize>*))
 	{
 		this->numReceivedEvent.attach(pObj, numReceivedEvent);
 		hasEvent = true;

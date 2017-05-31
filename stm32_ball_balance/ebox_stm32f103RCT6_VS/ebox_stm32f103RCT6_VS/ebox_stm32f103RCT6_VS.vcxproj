@@ -196,6 +196,7 @@
     <ClCompile Include="os\FreeRTOS\Source\timers.c" />
     <ClCompile Include="os\FreeRTOS\Source\portable\MemMang\heap_4.c" />
     <ClCompile Include="os\FreeRTOS\Source\portable\RVDS\ARM_CM3\port.c" />
+    <ClCompile Include="user\ball_balance.cpp" />
     <ClCompile Include="user\bsp.cpp" />
     <ClCompile Include="user\main.cpp" />
   </ItemGroup>
@@ -402,6 +403,7 @@
     <ClInclude Include="os\uCOS-II\Ports\os_cpu.h" />
     <ClInclude Include="os\uCOS-II\Source\ucos_ii.h" />
     <ClInclude Include="user\app_cfg.h" />
+    <ClInclude Include="user\ball_balance.h" />
     <ClInclude Include="user\bsp.h" />
     <ClInclude Include="user\FreeRTOSConfig.h" />
     <ClInclude Include="user\os_cfg.h" />

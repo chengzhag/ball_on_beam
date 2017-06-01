@@ -51,6 +51,10 @@ public:
 		//初始化数据传入串口
 		uartPos.begin(115200);
 		uartPos.attach(this, &BallBalance::refresh);
+
+#ifdef __BALL_BALANCE_DEBUG
+		uartOut.begin(115200);
+#endif
 	}
 
 	void refresh(UartNum<float, 1>* uartPosIn)
@@ -63,6 +67,10 @@ public:
 		float pct = -pid.refresh(pos) + 50;
 		limit<float>(pct, 0, 100);
 		servo.setPct(pct);
+#ifdef __BALL_BALANCE_DEBUG
+		float outData[] = { pos ,pct };
+		uartOut.sendOscilloscope(outData, 2);
+#endif
 	}
 };
 

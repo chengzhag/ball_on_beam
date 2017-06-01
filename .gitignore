@@ -11,13 +11,13 @@
 *.userprefs
 
 # Build results
-[Dd]ebug/
+[Dd]ebug/*
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
 [Xx]64/
 [Xx]86/
-[Bb]uild/
+[Bb]uild/*
 bld/
 [Bb]in/
 [Oo]bj/
@@ -240,3 +240,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+# 跟踪OpenCV_raspberry_ball_locating/raspicam-0.1.6/build文件夹
+!/OpenCV_raspberry_ball_locating/raspicam-0.1.6/build/

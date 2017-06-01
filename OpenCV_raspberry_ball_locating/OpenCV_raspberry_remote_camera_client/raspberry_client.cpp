@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 	vector<unsigned long> verticalVector;
 	//小球位置计算，单位mm
 	const float railLength=300;
-	const float camCenterShift = -4;
+	const float camCenterShift = 5;
 	
 	//初始化连接
 	if (!cam.open())
@@ -98,7 +98,7 @@ int main(int argc, char **argv)
 		int minBrightnessPos = distance(verticalVector.begin(), minBrightnessIt);
 		
 		//直接以极小值为中心
-		float pos = (float(minBrightnessPos) - verticalVector.size() / 2)*railLength / verticalVector.size() + camCenterShift;
+		float pos = (float(minBrightnessPos) - verticalVector.size() / 2)*railLength / verticalVector.size() - camCenterShift;
 		
 //		//以峰周围+-0.1*rawImWitdh的面积中心。弃用，波动更大
 //		int peakStart = minBrightnessPos - 0.1*rawImWitdh, peakEnd;

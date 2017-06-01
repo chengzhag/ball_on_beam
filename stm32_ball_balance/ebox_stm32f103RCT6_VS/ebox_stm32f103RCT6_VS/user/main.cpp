@@ -14,18 +14,19 @@
 #include "ebox.h"
 #include "ball_balance.h"
 
+BallBalance ballBalance(&uart2, &PB8);
+
 void setup()
 {
     ebox_init();
     uart1.begin(115200);
+	ballBalance.begin();
 }
 int main(void)
 {
     setup();
     while(1)
     {
-        uart1.printf("ok\n");
-        delay_ms(1000);
 
     }
 

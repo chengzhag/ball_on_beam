@@ -680,9 +680,6 @@
     <ClCompile Include="common\edriver\uart_vcan.cpp">
       <Filter>Source files\common\edriver</Filter>
     </ClCompile>
-    <ClCompile Include="user\ball_balance.cpp">
-      <Filter>Source files\user</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\bigiot\bigiot.h">

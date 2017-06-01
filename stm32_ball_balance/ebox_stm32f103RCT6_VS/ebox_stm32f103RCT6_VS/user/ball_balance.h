@@ -26,7 +26,7 @@ public:
 #endif
 	) :
 		uartPos(uartPosIn),
-		servo(pinServo, 100, 1.2, 1.7)
+		servo(pinServo, 100, 1.2, 2.0)
 #ifdef __BALL_BALANCE_DEBUG
 		, uartOut(uartDebug)
 #endif
@@ -37,8 +37,8 @@ public:
 	void begin()
 	{
 		//初始化PID
-		pid.setRefreshInterval(30);
-		pid.setWeights(1.5, 0.2, 1.6);
+		pid.setRefreshRate(30);
+		pid.setWeights(0.25, 0.2, 0.16);
 		pid.setOutputLowerLimit(-INF_FLOAT);
 		pid.setOutputUpperLimit(INF_FLOAT);
 		pid.setISeperateThres(50);
@@ -46,7 +46,7 @@ public:
 
 		//初始化舵机
 		servo.begin();
-		servo.setPct(50);
+		servo.setPct(51);
 		
 		//初始化数据传入串口
 		uartPos.begin(115200);
@@ -64,7 +64,7 @@ public:
 		{
 			pos = *(uartPosIn->getNum());
 		}
-		float pct = -pid.refresh(pos) + 50;
+		float pct = -pid.refresh(pos) + 51;
 		limit<float>(pct, 0, 100);
 		servo.setPct(pct);
 #ifdef __BALL_BALANCE_DEBUG

@@ -8,8 +8,9 @@ template<typename T, int Size>
 class SignalStream
 {
 	int indexHead;
-public:
+protected:
 	T buf[Size];
+public:
 
 	//³õÊ¼»¯bufÎª0
 	SignalStream();

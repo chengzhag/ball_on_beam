@@ -128,6 +128,10 @@ Looks like your toolchain sysroot may have the incorrect linker configuration fi
 ## raspicam-0.1.6
 被Raspicam引用，raspicam源码
 
+- 在编译完成后，将生成的动态库libraspicam.so更名为libraspicam.so.0.1，和libraspicam_cv.so一起放入/usr/lib/raspicam文件夹。关于linux的动态库存放位置，看[Linux 里有/lib和/usr/lib，这两个目录下的库文件有什么区别吗？如果没区别为什么又要分开放呢](http://blog.csdn.net/fengyunjh/article/details/6232894)
+- 然后按[linux找不到动态链接库 .so文件的解决方法](http://www.cnblogs.com/xudong-bupt/p/3698294.html)更新动态库搜索路径
+- 关于linux下文件夹的创建和文件的移动看[Linux文件的复制、删除和移动命令使用说明](http://www.jb51.net/LINUXjishu/34936.html)
+
 ## RaspberryCameraTest
 测试编译的Raspicam库，不依赖opencv
 

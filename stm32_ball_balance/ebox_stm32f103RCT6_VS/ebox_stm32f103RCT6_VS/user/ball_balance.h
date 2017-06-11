@@ -13,7 +13,7 @@
 #include "tb6612fng.h"
 
 #define __BALL_BALANCE_DEBUG
-#define __FILTER_WINDOW_SIZE 2
+#define __FILTER_WINDOW_SIZE 3
 
 class Motor9250
 {
@@ -29,7 +29,7 @@ public:
 		mpu(i2c)
 	{
 		pid.setRefreshInterval(refreshInterval);
-		pid.setWeights(2.5, 0, 0.15);
+		pid.setWeights(2.2, 0, 0.13);
 		pid.setOutputLowerLimit(-INF_FLOAT);
 		pid.setOutputUpperLimit(INF_FLOAT);
 		pid.setDesiredPoint(0);
@@ -67,7 +67,7 @@ public:
 
 	void setTarget(float angle)
 	{
-		limit<float>(angle, -60, 60);
+		limit<float>(angle, -90, 90);
 		pid.setDesiredPoint(angle);
 	}
 
@@ -113,7 +113,7 @@ class BallBalance
 			pos = filter.getFilterOut(pos);
 		}
 		float angle = pid.refresh(pos);
-		limit<float>(angle, -45, 45);
+		limit<float>(angle, -90, 90);
 #ifdef __BALL_BALANCE_DEBUG
 		float outData[] = { pos ,angle ,timer.getFps(),motor.getAngle() };
 		uartOut.sendOscilloscope(outData, 4);
@@ -155,10 +155,10 @@ public:
 	{
 		//初始化PID
 		pid.setRefreshRate(30);
-		pid.setWeights(0.07, 0, 0.02);
+		pid.setWeights(0.06, 0.05, 0.04);
 		pid.setOutputLowerLimit(-INF_FLOAT);
 		pid.setOutputUpperLimit(INF_FLOAT);
-		pid.setISeperateThres(50);
+		pid.setISeperateThres(60);
 		pid.setDesiredPoint(0);
 
 		//初始化电机
@@ -183,6 +183,12 @@ public:
 	float getAngle()
 	{
 		return motor.getAngle();
+	}
+
+	void setTarget(float pos)
+	{
+		limit<float>(pos, -100, 100);
+		pid.setDesiredPoint(pos);
 	}
 	
 };

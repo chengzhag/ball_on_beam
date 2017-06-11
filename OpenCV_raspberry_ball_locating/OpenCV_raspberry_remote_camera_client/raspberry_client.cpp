@@ -15,8 +15,8 @@
 using namespace cv;
 using namespace std;
 
-//#define STDIO_DEBUG
-//#define SOCKET_SEND_IMAGE
+#define STDIO_DEBUG
+#define SOCKET_SEND_IMAGE
 
 int main(int argc, char **argv)
 {

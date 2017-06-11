@@ -312,6 +312,60 @@
     <Filter Include="Header files\Device-specific files">
       <UniqueIdentifier>{7c9dce9d-f0c7-4255-96f9-6031ec1dae08}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source files\common\edriver\MPU9250">
+      <UniqueIdentifier>{babf6458-06b4-4d58-9b58-ca2310c18107}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\common\edriver\MPU9250\eMPL">
+      <UniqueIdentifier>{c3af3534-2b9c-4e55-8ab7-497c96e41fee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\edriver">
+      <UniqueIdentifier>{e23110c7-ae13-42be-9397-148563d4d2ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\edriver">
+      <UniqueIdentifier>{40fad191-81ca-436a-9667-cf9ce2546ca5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\edriver\MPU9250">
+      <UniqueIdentifier>{936ca81e-2b09-4b22-9f6e-51f12e7fc72c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\edriver\MPU9250">
+      <UniqueIdentifier>{9a63a257-f461-4877-a797-c199aa158ee6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\edriver\MPU9250\eMPL">
+      <UniqueIdentifier>{70027601-5995-4933-9adb-a0bb7fc9d401}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\edriver\MPU9250\eMPL">
+      <UniqueIdentifier>{591d3234-69ca-4b01-8186-19f6d411d4ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\edriver\SFUD">
+      <UniqueIdentifier>{27a7a549-4bbe-4c8d-8462-4f9992c44c47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\edriver\SFUD\ebox">
+      <UniqueIdentifier>{18281792-f1df-4909-8288-68f0099cea1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\edriver\SFUD">
+      <UniqueIdentifier>{6898e577-519d-4cb3-aaa9-2583e67331d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\edriver\SFUD\sfud">
+      <UniqueIdentifier>{8b947076-7bf9-42a9-96bb-5cf87b267260}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\edriver\SFUD\sfud\inc">
+      <UniqueIdentifier>{e8d610d2-69c2-472e-8aa6-de6f70ea2b7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\edriver\SFUD\sfud">
+      <UniqueIdentifier>{501cf3d2-70d2-4e55-a822-ed0dfcf9cd0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\edriver\SFUD\sfud\port">
+      <UniqueIdentifier>{e7a1eee2-7246-453d-a532-1ca867ebcdee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\edriver\SFUD\sfud\src">
+      <UniqueIdentifier>{a4ec71f7-5c0f-4909-8ac5-dd6c8bca4010}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\edriver\WiFi">
+      <UniqueIdentifier>{14628c09-4beb-463f-af8d-bf5f85407fd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\edriver\WiFi">
+      <UniqueIdentifier>{7a2c9c74-659a-4fa4-b70f-be6e9359ca8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="common\edriver\74HC595.cpp">
@@ -644,9 +698,6 @@
     <ClCompile Include="user\main.cpp">
       <Filter>Source files\user</Filter>
     </ClCompile>
-    <ClCompile Include="common\edriver\MPU6050.cpp">
-      <Filter>Source files\common\edriver</Filter>
-    </ClCompile>
     <ClCompile Include="common\edriver\encoder_exti.cpp">
       <Filter>Source files\common\edriver</Filter>
     </ClCompile>
@@ -679,6 +730,480 @@
     </ClCompile>
     <ClCompile Include="common\edriver\uart_vcan.cpp">
       <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\drv8825.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\MPU6050.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\74HC595.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\accurate_pwm.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\at24c02.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\at45db.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\Button.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\colorled.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\dht11.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\drv8825.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\ds18b20.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\DS3231.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\encoder.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\encoder_exti.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\encoder_motor.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\encoder_timer.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\fm25v.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\FT800.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\GP2Y1051.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\ir_decoder.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\ir_encoder.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\key_dm.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\L3G4200D.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\LCD1602.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\lcd_1.8.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\LED.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\led_segment.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\lsm303dhlc.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\LTC1446.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\Max7456.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\mmc_sd.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\MPU6050.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\Nokia5110.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\NRF24L01.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\OLED.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\OLED_ssd1306.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\parallel_gpio.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\PID.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\servo.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\si4432.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\tb6612fng.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\TM1638.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\uart_string.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\uart_vcan.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\ultrasonic_wave.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\ultrasonic_wave_uart.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\w25x16.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\w5500.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\ws2812.cpp">
+      <Filter>Source files\common\edriver\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\74HC595.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\accurate_pwm.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\at24c02.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\at45db.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\Button.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\colorled.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\dht11.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\drv8825.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\ds18b20.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\DS3231.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\encoder.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\encoder_exti.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\encoder_motor.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\encoder_timer.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\fm25v.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\FT800.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\GP2Y1051.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\ir_decoder.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\ir_encoder.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\key_dm.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\L3G4200D.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\LCD1602.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\lcd_1.8.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\LED.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\led_segment.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\lsm303dhlc.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\LTC1446.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\Max7456.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\mmc_sd.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\MPU6050.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\Nokia5110.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\NRF24L01.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\OLED.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\OLED_ssd1306.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\parallel_gpio.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\PID.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\servo.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\si4432.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\tb6612fng.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\TM1638.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\uart_string.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\uart_vcan.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\ultrasonic_wave.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\ultrasonic_wave_uart.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\w25x16.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\w5500.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\ws2812.cpp">
+      <Filter>Source files\common\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\MPU9250\mpu9250.cpp">
+      <Filter>Source files\common\edriver\MPU9250</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\MPU9250\stm32_iic.cpp">
+      <Filter>Source files\common\edriver\MPU9250</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\MPU9250\eMPL\inv_mpu.cpp">
+      <Filter>Source files\common\edriver\MPU9250\eMPL</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\MPU9250\eMPL\inv_mpu_dmp_motion_driver.cpp">
+      <Filter>Source files\common\edriver\MPU9250\eMPL</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\74HC595.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\accurate_pwm.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\at24c02.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\at45db.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\Button.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\colorled.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\dht11.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\drv8825.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\ds18b20.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\DS3231.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\encoder.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\encoder_exti.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\encoder_motor.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\encoder_timer.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\fm25v.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\FT800.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\GP2Y1051.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\ir_decoder.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\ir_encoder.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\key_dm.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\L3G4200D.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\LCD1602.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\lcd_1.8.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\LED.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\led_segment.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\lsm303dhlc.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\LTC1446.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\Max7456.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\mmc_sd.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\MPU6050.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\Nokia5110.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\NRF24L01.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\OLED.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\OLED_ssd1306.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\parallel_gpio.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\PID.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\servo.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\si4432.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\tb6612fng.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\TM1638.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\uart_string.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\uart_vcan.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\ultrasonic_wave.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\ultrasonic_wave_uart.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\w25x16.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\w5500.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\ws2812.cpp">
+      <Filter>Source files\edriver</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\MPU9250\mpu9250.cpp">
+      <Filter>Source files\edriver\MPU9250</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\MPU9250\stm32_iic.cpp">
+      <Filter>Source files\edriver\MPU9250</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\MPU9250\eMPL\inv_mpu.cpp">
+      <Filter>Source files\edriver\MPU9250\eMPL</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\MPU9250\eMPL\inv_mpu_dmp_motion_driver.cpp">
+      <Filter>Source files\edriver\MPU9250\eMPL</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\SFUD\ebox\ebox_sfud_port.cpp">
+      <Filter>Source files\edriver\SFUD\ebox</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\SFUD\sfud\port\sfud_port.c">
+      <Filter>Source files\edriver\SFUD\sfud\port</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\SFUD\sfud\src\sfud.c">
+      <Filter>Source files\edriver\SFUD\sfud\src</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\SFUD\sfud\src\sfud_sfdp.c">
+      <Filter>Source files\edriver\SFUD\sfud\src</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\WiFi\ESP8266.cpp">
+      <Filter>Source files\edriver\WiFi</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\WiFi\esp8266_tcp.cpp">
+      <Filter>Source files\edriver\WiFi</Filter>
+    </ClCompile>
+    <ClCompile Include="common\edriver\WiFi\esp8266_udp.cpp">
+      <Filter>Source files\edriver\WiFi</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1255,9 +1780,6 @@
     <ClInclude Include="user\os_cfg.h">
       <Filter>Header files\user</Filter>
     </ClInclude>
-    <ClInclude Include="common\edriver\MPU6050.h">
-      <Filter>Header files\common\edriver</Filter>
-    </ClInclude>
     <ClInclude Include="common\edriver\encoder_exti.h">
       <Filter>Header files\common\edriver</Filter>
     </ClInclude>
@@ -1299,6 +1821,534 @@
     </ClInclude>
     <ClInclude Include="user\ball_balance.h">
       <Filter>Header files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\drv8825.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\MPU6050.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\74HC595.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\accurate_pwm.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\at24c02.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\at45db.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\Button.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\colorled.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\dht11.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\drv8825.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\ds18b20.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\DS3231.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\encoder.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\encoder_exti.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\encoder_motor.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\encoder_timer.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\fm25v.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\font.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\FT800.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\GP2Y1051.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\ir_decoder.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\ir_encoder.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\key_dm.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\L3G4200D.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\LCD1602.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\lcd_1.8.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\led.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\led_segment.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\lsm303dhlc.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\LTC1446.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\Max7456.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\mmc_sd.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\MPU6050.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\Nokia5110.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\NRF24L01.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\OLED.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\OLED_ssd1306.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\parallel_gpio.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\PID.hpp">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\servo.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\si4432.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\tb6612fng.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\TM1638.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\uart_num.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\uart_string.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\uart_vcan.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\ultrasonic_wave.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\ultrasonic_wave_uart.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\w25x16.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\w5500.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\ws2812.h">
+      <Filter>Header files\common\edriver\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\SFUD\sfud\inc\sfud.h">
+      <Filter>Header files\common\edriver\edriver\SFUD\sfud\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\SFUD\sfud\inc\sfud_cfg.h">
+      <Filter>Header files\common\edriver\edriver\SFUD\sfud\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\SFUD\sfud\inc\sfud_def.h">
+      <Filter>Header files\common\edriver\edriver\SFUD\sfud\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\SFUD\sfud\inc\sfud_flash_def.h">
+      <Filter>Header files\common\edriver\edriver\SFUD\sfud\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\WiFi\ESP8266.h">
+      <Filter>Header files\common\edriver\edriver\WiFi</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\WiFi\esp8266_tcp.h">
+      <Filter>Header files\common\edriver\edriver\WiFi</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\WiFi\esp8266_udp.h">
+      <Filter>Header files\common\edriver\edriver\WiFi</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\74HC595.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\accurate_pwm.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\at24c02.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\at45db.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\Button.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\colorled.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\dht11.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\drv8825.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\ds18b20.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\DS3231.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\encoder.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\encoder_exti.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\encoder_motor.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\encoder_timer.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\fm25v.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\font.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\FT800.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\GP2Y1051.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\ir_decoder.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\ir_encoder.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\key_dm.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\L3G4200D.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\LCD1602.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\lcd_1.8.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\led.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\led_segment.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\lsm303dhlc.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\LTC1446.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\Max7456.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\mmc_sd.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\MPU6050.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\Nokia5110.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\NRF24L01.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\OLED.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\OLED_ssd1306.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\parallel_gpio.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\PID.hpp">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\servo.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\si4432.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\tb6612fng.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\TM1638.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\uart_num.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\uart_string.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\uart_vcan.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\ultrasonic_wave.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\ultrasonic_wave_uart.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\w25x16.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\w5500.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\ws2812.h">
+      <Filter>Header files\common\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\SFUD\sfud\inc\sfud.h">
+      <Filter>Header files\common\edriver\SFUD\sfud\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\SFUD\sfud\inc\sfud_cfg.h">
+      <Filter>Header files\common\edriver\SFUD\sfud\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\SFUD\sfud\inc\sfud_def.h">
+      <Filter>Header files\common\edriver\SFUD\sfud\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\SFUD\sfud\inc\sfud_flash_def.h">
+      <Filter>Header files\common\edriver\SFUD\sfud\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\WiFi\ESP8266.h">
+      <Filter>Header files\common\edriver\WiFi</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\WiFi\esp8266_tcp.h">
+      <Filter>Header files\common\edriver\WiFi</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\WiFi\esp8266_udp.h">
+      <Filter>Header files\common\edriver\WiFi</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\74HC595.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\accurate_pwm.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\at24c02.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\at45db.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\Button.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\colorled.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\dht11.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\drv8825.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\ds18b20.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\DS3231.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\encoder.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\encoder_exti.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\encoder_motor.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\encoder_timer.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\fm25v.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\font.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\FT800.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\GP2Y1051.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\ir_decoder.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\ir_encoder.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\key_dm.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\L3G4200D.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\LCD1602.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\lcd_1.8.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\led.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\led_segment.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\lsm303dhlc.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\LTC1446.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\Max7456.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\mmc_sd.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\MPU6050.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\Nokia5110.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\NRF24L01.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\OLED.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\OLED_ssd1306.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\parallel_gpio.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\PID.hpp">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\servo.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\si4432.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\tb6612fng.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\TM1638.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\uart_num.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\uart_string.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\uart_vcan.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\ultrasonic_wave.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\ultrasonic_wave_uart.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\w25x16.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\w5500.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\ws2812.h">
+      <Filter>Header files\edriver</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\MPU9250\mpu9250.h">
+      <Filter>Header files\edriver\MPU9250</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\MPU9250\stm32_iic.h">
+      <Filter>Header files\edriver\MPU9250</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\MPU9250\eMPL\dmpKey.h">
+      <Filter>Header files\edriver\MPU9250\eMPL</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\MPU9250\eMPL\dmpmap.h">
+      <Filter>Header files\edriver\MPU9250\eMPL</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\MPU9250\eMPL\inv_mpu.h">
+      <Filter>Header files\edriver\MPU9250\eMPL</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\MPU9250\eMPL\inv_mpu_dmp_motion_driver.h">
+      <Filter>Header files\edriver\MPU9250\eMPL</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\SFUD\sfud\inc\sfud.h">
+      <Filter>Header files\edriver\SFUD\sfud\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\SFUD\sfud\inc\sfud_cfg.h">
+      <Filter>Header files\edriver\SFUD\sfud\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\SFUD\sfud\inc\sfud_def.h">
+      <Filter>Header files\edriver\SFUD\sfud\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\SFUD\sfud\inc\sfud_flash_def.h">
+      <Filter>Header files\edriver\SFUD\sfud\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\WiFi\ESP8266.h">
+      <Filter>Header files\edriver\WiFi</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\WiFi\esp8266_tcp.h">
+      <Filter>Header files\edriver\WiFi</Filter>
+    </ClInclude>
+    <ClInclude Include="common\edriver\WiFi\esp8266_udp.h">
+      <Filter>Header files\edriver\WiFi</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

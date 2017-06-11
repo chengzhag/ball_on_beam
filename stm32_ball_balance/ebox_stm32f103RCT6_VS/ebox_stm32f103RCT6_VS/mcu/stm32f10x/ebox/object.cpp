@@ -156,11 +156,11 @@ Uart uart2(USART2, &PA2, &PA3);
 //SoftSpi	sspi1(&PA5, &PA6, &PA7);
 //
 ////i2c
-//I2c     i2c1(I2C1, &PB6, &PB7);
-//I2c     i2c2(I2C2, &PB10, &PB11);
+I2c     i2c1(I2C1, &PB6, &PB7);
+I2c     i2c2(I2C2, &PB10, &PB11);
 //SoftI2c si2c(&PA4, &PA5);
 //SoftI2c si2c1(&PB6, &PB7);
-//SoftI2c si2c2(&PB10, &PB11);
+SoftI2c si2c2(&PB10, &PB11);
 //
 ////can
 //Can can1(&PB8, &PB9);

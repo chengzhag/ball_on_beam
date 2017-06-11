@@ -43,6 +43,8 @@
         <string>C:/Keil_v5/ARM/CMSIS/Include</string>
         <string>os/FreeRTOS/Source/include</string>
         <string>os/FreeRTOS/Source/portable/RVDS/ARM_CM3</string>
+        <string>common/edriver/MPU9250</string>
+        <string>common/edriver/MPU9250/eMPL</string>
       </IncludeDirectories>
       <CFLAGS />
       <CXXFLAGS />

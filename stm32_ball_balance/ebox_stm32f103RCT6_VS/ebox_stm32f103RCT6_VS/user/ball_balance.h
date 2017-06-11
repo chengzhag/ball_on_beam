@@ -12,8 +12,8 @@
 #include "MPU6050.h"
 #include "tb6612fng.h"
 
-//#define __BALL_BALANCE_DEBUG
-#define __FILTER_WINDOW_SIZE 1
+#define __BALL_BALANCE_DEBUG
+#define __FILTER_WINDOW_SIZE 2
 
 class Motor9250
 {
@@ -24,12 +24,12 @@ class Motor9250
 
 public:
 	Motor9250(Gpio *motorPinA, Gpio *motorPinB,
-		Gpio *motorPinPwm, I2c *i2c, float refreshInterval=0.01) :
+		Gpio *motorPinPwm, SoftI2c *i2c, float refreshInterval=0.01) :
 		motor(motorPinA, motorPinB, motorPinPwm),
 		mpu(i2c)
 	{
 		pid.setRefreshInterval(refreshInterval);
-		pid.setWeights(2, 5, 0.25);
+		pid.setWeights(2.5, 0, 0.15);
 		pid.setOutputLowerLimit(-INF_FLOAT);
 		pid.setOutputUpperLimit(INF_FLOAT);
 		pid.setDesiredPoint(0);
@@ -43,7 +43,7 @@ public:
 
 	void begin()
 	{
-		mpu.set_parameter(2, 0.005, 100);
+		mpu.set_parameter(10.3, 0.008, 125);
 		mpu.begin(400000);
 
 		//mpu.Acc_Correct();
@@ -55,8 +55,8 @@ public:
 
 	void refresh()
 	{
-		mpu.AHRS_Dataprepare();
-		mpu.AHRSupdate();
+		mpu.ahrs_dataprepare();
+		mpu.ahrs_update();
 		mpu.get_data_ahrs(angle, angle + 1, angle + 2);
 
 		float motorOut = 0;
@@ -112,10 +112,10 @@ class BallBalance
 			pos = *(uartPosIn->getNum());
 			pos = filter.getFilterOut(pos);
 		}
-		float angle = +pid.refresh(pos);
+		float angle = pid.refresh(pos);
 		limit<float>(angle, -45, 45);
 #ifdef __BALL_BALANCE_DEBUG
-		float outData[] = { pos ,pct ,timer.getFps(),motor.getAngle() };
+		float outData[] = { pos ,angle ,timer.getFps(),motor.getAngle() };
 		uartOut.sendOscilloscope(outData, 4);
 #endif
 		motor.setTarget(angle);
@@ -136,7 +136,7 @@ class BallBalance
 
 public:
 	BallBalance(Uart* uartPosIn, Gpio *motorPinA, Gpio *motorPinB,
-		Gpio *motorPinPwm, I2c *i2c, float refreshInterval = 0.01
+		Gpio *motorPinPwm, SoftI2c *i2c, float refreshInterval = 0.01
 #ifdef __BALL_BALANCE_DEBUG
 		, Uart* uartDebug = &uart1
 #endif
@@ -155,7 +155,7 @@ public:
 	{
 		//≥ı ºªØPID
 		pid.setRefreshRate(30);
-		pid.setWeights(0.01, 0, 0);
+		pid.setWeights(0.07, 0, 0.02);
 		pid.setOutputLowerLimit(-INF_FLOAT);
 		pid.setOutputUpperLimit(INF_FLOAT);
 		pid.setISeperateThres(50);

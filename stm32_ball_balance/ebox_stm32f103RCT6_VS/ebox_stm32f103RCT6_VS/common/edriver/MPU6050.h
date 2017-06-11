@@ -125,7 +125,7 @@ class Mpu9250
 public:
 	float sample;   //采样率
 
-	Mpu9250(I2c *i2c)
+	Mpu9250(SoftI2c *i2c)
     {
         this->i2c = i2c;
     };
@@ -148,62 +148,50 @@ public:
 
 
 private:
-	I2c         *i2c;
+    SoftI2c         *i2c;
     uint32_t    speed;
 	u8 salve_flag;
 	u8 salve_adress;
 
 };
 
-
-class Mpu9250GAngle:public Mpu9250
-{
-public:
-	Mpu9250GAngle(I2c *i2c) :
-		Mpu9250(i2c)
-	{
-		
-	}
-
-	
-};
-
+#endif
 
 
 class Mpu9250_Ahrs:public Mpu9250
 {
 public:
 	//构造函数
-	Mpu9250_Ahrs(I2c  *i2c);
+	Mpu9250_Ahrs(SoftI2c *i2c);
 	//原始数据获取，不成功返回-1.-2。成功没有设定返回值，未知返回值
-	int Get_MPU9250_Data(void);
+	int get_mpu9250_data(void);
 	//测试函数：测试初始数据是否成功获取
 	void get_data_buf(int16_t *mpu, int16_t *AK);
 
 	//ADC转换，将ADC数据转换为直观数据
-	void AHRS_Dataprepare(void);
+	void ahrs_dataprepare(void);
 	//ADC数据转换测试
 	void get_data_adc(float *mpu, float *AK);
 	//加速度计校正
-	void Acc_Correct(void);
+	void acc_correct(void);
 	//陀螺仪校正
-	void Gyro_Correct(void);
+	void gyro_correct(void);
 	//磁力计校正
-	void Mag_Correct(void);
+	void mag_correct(void);
 	//姿态解算得出欧拉角，从外部传入参数
-	void AHRSupdate(float gx, float gy, float gz, float ax, float ay, float az, float mx, float my, float mz);
+	void ahrs_update(float gx, float gy, float gz, float ax, float ay, float az, float mx, float my, float mz);
 	//调用内部参数
-	void AHRSupdate(void);
+	void ahrs_update(void);
 	//获取欧拉角
 	void get_data_ahrs(float *Pitch, float *Roll, float *Yaw);
 	//测试代码：测试q0,q1,q2,q3
 	void get_data_q(float *q);
 	void update_data(void);
 	//快速逆平方根
-	float invSqrt(float x);
+	float invsqrt(float x);
 	//参数设置，方便调参数
 	void set_parameter(float m_kp, float m_ki, float m_sample);
-	//参数大洋，验证参数设置正确与否:比例系数，微分系数，采样率，采样率对应的寄存器设置参数，采样周期的一半
+	//参数验证，验证参数设置正确与否:比例系数，微分系数，采样率，采样率对应的寄存器设置参数，采样周期的一半
 	void get_parameter(float *m_kp, float *m_ki, float *m_samplefreq, uint8_t *sampleH, float *m_halfT);
 private:
 
@@ -238,6 +226,3 @@ private:
 	   float halfT;
 	   float  sampleFreq;
 };
-
-
-#endif

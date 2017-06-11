@@ -1197,8 +1197,6 @@
 //Project/stm32f10x/mdk/RTE
 //os/FreeRTOS/Source/include
 //os/FreeRTOS/Source/portable/RVDS/ARM_CM3
-//common/edriver/MPU9250
-//common/edriver/MPU9250/eMPL
 // --- Include directories end --- //
 
 

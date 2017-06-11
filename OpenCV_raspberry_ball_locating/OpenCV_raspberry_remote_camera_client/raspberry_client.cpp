@@ -15,8 +15,8 @@
 using namespace cv;
 using namespace std;
 
-#define STDIO_DEBUG
-#define SOCKET_SEND_IMAGE
+//#define STDIO_DEBUG
+//#define SOCKET_SEND_IMAGE
 
 int main(int argc, char **argv)
 {
@@ -25,14 +25,14 @@ int main(int argc, char **argv)
 	raspicam::RaspiCam_Cv cam;
 	Mat rawIm, railIm;
 	cam.set(CV_CAP_PROP_FORMAT, CV_8UC1);
-	cam.set(CV_CAP_PROP_FRAME_WIDTH, cam.get(CV_CAP_PROP_FRAME_WIDTH) * 1);
-	cam.set(CV_CAP_PROP_FRAME_HEIGHT, cam.get(CV_CAP_PROP_FRAME_HEIGHT) * 1);
+	cam.set(CV_CAP_PROP_FRAME_WIDTH, cam.get(CV_CAP_PROP_FRAME_WIDTH) * 0.5);
+	cam.set(CV_CAP_PROP_FRAME_HEIGHT, cam.get(CV_CAP_PROP_FRAME_HEIGHT) * 0.5);
 	const int rawImHeight = cam.get(CV_CAP_PROP_FRAME_HEIGHT),
 		rawImWitdh = cam.get(CV_CAP_PROP_FRAME_WIDTH);
 	
 	//算法相关
 	//剪切导轨位置图像
-	float railRegionHeight = 0.003, railRegionShift = -0.06;
+	float railRegionHeight = 0.005, railRegionShift = -0.06;
 	Rect railRegion(0,
 		int(rawImHeight*(0.5 - railRegionHeight / 2 + railRegionShift)),
 		rawImWitdh,
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 	vector<unsigned long> verticalVector;
 	//小球位置计算，单位mm
 	const float railLength=300;
-	const float camCenterShift = 5;
+	const float camCenterShift = 0;
 	
 	//初始化连接
 	if (!cam.open())

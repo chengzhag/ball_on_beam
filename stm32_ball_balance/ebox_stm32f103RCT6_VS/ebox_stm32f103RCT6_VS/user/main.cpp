@@ -17,23 +17,21 @@
 #include "my_math.h"
 #include "tb6612fng.h"
 #include "PID.hpp"
-#include "mpu9250.h"
 
 UartVscan uartvscan(&uart1);
 FpsCounter timer;
-MPU9250 mpu;
-//Mpu9250_Ahrs mpu(&i2c2);
-//Motor9250 motor(&PB14, &PB15, &PA8, &i2c2, 0.01);
-//BallBalance ballBalance(&uart2, &PB14, &PB15, &PA6, &i2c2, 0.01);
+//Mpu9250_Ahrs mpu(&si2c2);
+//Motor9250 motor(&PB14, &PB15, &PA6, &si2c2, 0.01);
+BallBalance ballBalance(&uart2, &PB14, &PB15, &PA6, &si2c2, 0.01);
 
 void setup()
 {
     ebox_init();
     uart1.begin(115200);
 
-	mpu.begin(200);
+
 	//mpu.calibrate();
-	//ballBalance.begin();
+	ballBalance.begin();
 	//motor.begin();
 
 	//mpu.set_parameter(2, 0.005, 100);
@@ -55,18 +53,18 @@ int main(void)
 		//}
 		//motor.setTarget(target);
 		//motor.refresh();
-		//ballBalance.motorRefresh();
+		ballBalance.motorRefresh();
 
 		//mpu.AHRS_Dataprepare();
 		//mpu.AHRSupdate();
 		//mpu.get_data_ahrs(data, data + 1, data + 2);
 
-		mpu.readDMP(data[0], data[1], data[2]);
+		
 
-		delay_ms(5);
+		delay_ms(2);
 		//data[0] = ballBalance.getAngle();
-		data[3]=timer.getFps();
-		uartvscan.sendOscilloscope(data, 4);
+		//data[1]=timer.getFps();
+		//uartvscan.sendOscilloscope(data, 2);
 
 	}
 

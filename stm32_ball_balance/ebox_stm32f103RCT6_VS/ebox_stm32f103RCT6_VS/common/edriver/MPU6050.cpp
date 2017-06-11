@@ -131,7 +131,7 @@ void Mpu9250::mode(u8 mode)
 }
 
 //将参数传给基类
-Mpu9250_Ahrs::Mpu9250_Ahrs(I2c *i2c):Mpu9250(i2c)
+Mpu9250_Ahrs::Mpu9250_Ahrs(SoftI2c *i2c):Mpu9250(i2c)
 {
 	q0 = 1.0f;
 	q1 = 0.0f;
@@ -146,7 +146,7 @@ Mpu9250_Ahrs::Mpu9250_Ahrs(I2c *i2c):Mpu9250(i2c)
 
 }
 
-int Mpu9250_Ahrs::Get_MPU9250_Data(void)
+int Mpu9250_Ahrs::get_mpu9250_data(void)
 {
 	u8 id;
 	u8 AK_id;
@@ -156,7 +156,15 @@ int Mpu9250_Ahrs::Get_MPU9250_Data(void)
 	this->mode(MPU6500);
 	this->get_id(&id);
 	if (id == 0x73)
-		this->get_data(ACCEL_XOUT_H, temp, 7);
+	{
+		temp[0] = this->get_data_2byte(ACCEL_XOUT_H);
+		temp[1] = this->get_data_2byte(ACCEL_YOUT_H);
+		temp[2] = this->get_data_2byte(ACCEL_ZOUT_H);
+		temp[4] = this->get_data_2byte(GYRO_XOUT_H);
+		temp[5] = this->get_data_2byte(GYRO_YOUT_H);
+		temp[6] = this->get_data_2byte(GYRO_ZOUT_H);
+	}
+		
 	else
 		return -1;
 	delay_us(100);
@@ -186,6 +194,11 @@ int Mpu9250_Ahrs::Get_MPU9250_Data(void)
 	this->Magbuf.X = AK_temp[0];
 	this->Magbuf.Y = AK_temp[1];
 	this->Magbuf.Z = AK_temp[2];
+
+	this->Magbuf.X = AK_temp[0] + 65;
+	this->Magbuf.Y = AK_temp[1] - 65;
+	//this->Magbuf.Y = AK_temp[1]-70;
+	this->Magbuf.Z = AK_temp[2];
 	
 	return 0;
 }
@@ -206,9 +219,9 @@ void Mpu9250_Ahrs::get_data_buf(int16_t *mpu, int16_t *AK)
 	
 }
 
-void Mpu9250_Ahrs::AHRS_Dataprepare()
+void Mpu9250_Ahrs::ahrs_dataprepare()
 {
-	this->Get_MPU9250_Data();//先获取数据
+	this->get_mpu9250_data();//先获取数据
 	 //16.4 = 2^16/4000 lsb °/s     1/16.4=0.061     0.0174 = 3.14/180
 	 //陀螺仪数据从ADC转化为弧度每秒(这里需要减去偏移值)
 	GyroFinal.X = (Gyrobuf.X - Gyrooffset.X)*0.061*0.0174;
@@ -226,9 +239,13 @@ void Mpu9250_Ahrs::AHRS_Dataprepare()
 	MagFinal.X = (float)(Magbuf.X - Magoffset.X)*0.1465;
 	MagFinal.Y = (float)(Magbuf.Y - Magoffset.Y)*0.1465;
 	MagFinal.Z = (float)(Magbuf.Z - Magoffset.Z)*0.1465;
+
+	MagFinal.X = MagFinal.X - 24.905;
+	MagFinal.Y = MagFinal.Y - 14.647;
+	MagFinal.Z = MagFinal.Z;
 }
 
-void Mpu9250_Ahrs::Acc_Correct()
+void Mpu9250_Ahrs::acc_correct()
 {
 	u8 i = 0;
 	u8 numAcc = 200;//取100次累计量
@@ -239,7 +256,7 @@ void Mpu9250_Ahrs::Acc_Correct()
 
 	for (i = 0; i<numAcc; i++)
 	{
-		Get_MPU9250_Data();
+		get_mpu9250_data();
 		Angleaccx += Accbuf.X;
 		Angleaccy += Accbuf.Y;
 		Angleaccz += Accbuf.Z;
@@ -250,7 +267,7 @@ void Mpu9250_Ahrs::Acc_Correct()
 	Accoffset.Z = Angleaccy / numAcc;				   //得到加速度计基准
 }
 
-void Mpu9250_Ahrs::Gyro_Correct()
+void Mpu9250_Ahrs::gyro_correct()
 {
 	unsigned char i = 0;
 	unsigned char numGyro = 200;
@@ -261,7 +278,7 @@ void Mpu9250_Ahrs::Gyro_Correct()
 
 	for (i = 0; i<numGyro; i++)
 	{
-		Get_MPU9250_Data();
+		get_mpu9250_data();
 		Gyrox += Gyrobuf.X;
 		Gyroy += Gyrobuf.Y;
 		Gyroz += Gyrobuf.Z;
@@ -273,7 +290,7 @@ void Mpu9250_Ahrs::Gyro_Correct()
 	Gyrooffset.Z = Gyroz / numGyro;
 }
 
-void Mpu9250_Ahrs::Mag_Correct()
+void Mpu9250_Ahrs::mag_correct()
 {
 	unsigned char i = 0;
 	unsigned char numMag = 100;
@@ -283,7 +300,7 @@ void Mpu9250_Ahrs::Mag_Correct()
 
 	for (i = 0; i<numMag; i++)
 	{
-		Get_MPU9250_Data();
+		get_mpu9250_data();
 		Magx += Magbuf.X;
 		Magy += Magbuf.Y;
 		Magz += Magbuf.Z;
@@ -311,7 +328,7 @@ void Mpu9250_Ahrs::get_data_adc(float *mpu, float *AK)
 
 }
 
-float Mpu9250_Ahrs::invSqrt(float x)
+float Mpu9250_Ahrs::invsqrt(float x)
 {
 	float halfx = 0.5f * x;
 	float y = x;
@@ -322,7 +339,7 @@ float Mpu9250_Ahrs::invSqrt(float x)
 	return y;
 }
 
-void Mpu9250_Ahrs::AHRSupdate(void)
+void Mpu9250_Ahrs::ahrs_update(void)
 {
 	float ax = this->AccFinal.X;
 	float ay = this->AccFinal.Y;
@@ -349,14 +366,14 @@ void Mpu9250_Ahrs::AHRSupdate(void)
 
 		// Normalise accelerometer measurement
 		//正常化的加速度测量值
-		recipNorm = invSqrt(ax * ax + ay * ay + az * az);
+		recipNorm = invsqrt(ax * ax + ay * ay + az * az);
 		ax *= recipNorm;
 		ay *= recipNorm;
 		az *= recipNorm;
 
 		// Normalise magnetometer measurement
 		//正常化的磁力计测量值
-		recipNorm = invSqrt(mx * mx + my * my + mz * mz);
+		recipNorm = invsqrt(mx * mx + my * my + mz * mz);
 		mx *= recipNorm;
 		my *= recipNorm;
 		mz *= recipNorm;
@@ -422,7 +439,7 @@ void Mpu9250_Ahrs::AHRSupdate(void)
 		q3 += (qa * gz + qb * gy - qc * gx)*halfT;
 		//*/
 		// Normalise quaternion
-		recipNorm = invSqrt(q0 * q0 + q1 * q1 + q2 * q2 + q3 * q3);
+		recipNorm = invsqrt(q0 * q0 + q1 * q1 + q2 * q2 + q3 * q3);
 		q0 *= recipNorm;
 		q1 *= recipNorm;
 		q2 *= recipNorm;
@@ -430,19 +447,19 @@ void Mpu9250_Ahrs::AHRSupdate(void)
 
 		
 		//四元数转换成欧拉角
-
+		/*
 		Pitch = asin(2 * q0*q2 - 2 * q1*q3) / 3.14 * 180;
 		Roll = atan2(2 * q0*q1 + 2 * q2*q3, 1 - 2 * q1*q1 - 2 * q2*q2) / 3.14 * 180;
 		Yaw = atan2(2 * q0*q3 + 2 * q1*q2, 1 - 2 * q2*q2 - 2 * q3*q3) / 3.14 * 180;
-
-		/*
+		*/
+	//	/*
 		Pitch = asin(-2 * q1 * q3 + 2 * q0 * q2); //俯仰角，绕y轴转动         
 		Roll = atan2(2 * q2 * q3 + 2 * q0 * q1, -2 * q1 * q1 - 2 * q2* q2 + 1); //滚动角，绕x轴转动
 																				//0.9和0.1是修正系数，其中5.73=0.1*57.3，乘以57.3是为了将弧度转化为角度
 		Yaw = -(0.85 * (-Yaw + gz * 2 * halfT) + 0.15*57.3 * atan2(mx*cos(Roll) + my*sin(Roll)*sin(Pitch) + mz*sin(Roll)*cos(Pitch), my*cos(Pitch) - mz*sin(Pitch)));
 		Pitch = Pitch * 57.3;
 		Roll = Roll * 57.3;
-		*/
+	//	*/
 	}
 
 }

@@ -312,12 +312,6 @@
     <Filter Include="Header files\Device-specific files">
       <UniqueIdentifier>{7c9dce9d-f0c7-4255-96f9-6031ec1dae08}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source files\common\edriver\MPU9250">
-      <UniqueIdentifier>{babf6458-06b4-4d58-9b58-ca2310c18107}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source files\common\edriver\MPU9250\eMPL">
-      <UniqueIdentifier>{c3af3534-2b9c-4e55-8ab7-497c96e41fee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source files\edriver">
       <UniqueIdentifier>{e23110c7-ae13-42be-9397-148563d4d2ca}</UniqueIdentifier>
     </Filter>
@@ -1019,18 +1013,6 @@
     <ClCompile Include="common\edriver\ws2812.cpp">
       <Filter>Source files\common\edriver</Filter>
     </ClCompile>
-    <ClCompile Include="common\edriver\MPU9250\mpu9250.cpp">
-      <Filter>Source files\common\edriver\MPU9250</Filter>
-    </ClCompile>
-    <ClCompile Include="common\edriver\MPU9250\stm32_iic.cpp">
-      <Filter>Source files\common\edriver\MPU9250</Filter>
-    </ClCompile>
-    <ClCompile Include="common\edriver\MPU9250\eMPL\inv_mpu.cpp">
-      <Filter>Source files\common\edriver\MPU9250\eMPL</Filter>
-    </ClCompile>
-    <ClCompile Include="common\edriver\MPU9250\eMPL\inv_mpu_dmp_motion_driver.cpp">
-      <Filter>Source files\common\edriver\MPU9250\eMPL</Filter>
-    </ClCompile>
     <ClCompile Include="common\edriver\74HC595.cpp">
       <Filter>Source files\edriver</Filter>
     </ClCompile>
@@ -1183,27 +1165,6 @@
     </ClCompile>
     <ClCompile Include="common\edriver\MPU9250\eMPL\inv_mpu_dmp_motion_driver.cpp">
       <Filter>Source files\edriver\MPU9250\eMPL</Filter>
-    </ClCompile>
-    <ClCompile Include="common\edriver\SFUD\ebox\ebox_sfud_port.cpp">
-      <Filter>Source files\edriver\SFUD\ebox</Filter>
-    </ClCompile>
-    <ClCompile Include="common\edriver\SFUD\sfud\port\sfud_port.c">
-      <Filter>Source files\edriver\SFUD\sfud\port</Filter>
-    </ClCompile>
-    <ClCompile Include="common\edriver\SFUD\sfud\src\sfud.c">
-      <Filter>Source files\edriver\SFUD\sfud\src</Filter>
-    </ClCompile>
-    <ClCompile Include="common\edriver\SFUD\sfud\src\sfud_sfdp.c">
-      <Filter>Source files\edriver\SFUD\sfud\src</Filter>
-    </ClCompile>
-    <ClCompile Include="common\edriver\WiFi\ESP8266.cpp">
-      <Filter>Source files\edriver\WiFi</Filter>
-    </ClCompile>
-    <ClCompile Include="common\edriver\WiFi\esp8266_tcp.cpp">
-      <Filter>Source files\edriver\WiFi</Filter>
-    </ClCompile>
-    <ClCompile Include="common\edriver\WiFi\esp8266_udp.cpp">
-      <Filter>Source files\edriver\WiFi</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

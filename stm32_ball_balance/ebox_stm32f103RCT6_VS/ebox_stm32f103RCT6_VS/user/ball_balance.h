@@ -18,18 +18,18 @@
 class Motor9250
 {
 	Mpu9250_Ahrs mpu;
-	TB6612FNG motor;
+	DRV8825 motor;
 	greg::PID pid;
 	float angle[3];
 
 public:
-	Motor9250(Gpio *motorPinA, Gpio *motorPinB,
+	Motor9250(Gpio *motorPinDir, 
 		Gpio *motorPinPwm, SoftI2c *i2c, float refreshInterval=0.01) :
-		motor(motorPinA, motorPinB, motorPinPwm),
+		motor(motorPinPwm, motorPinDir),
 		mpu(i2c)
 	{
 		pid.setRefreshInterval(refreshInterval);
-		pid.setWeights(2.2, 0, 0.13);
+		pid.setWeights(0.1, 0, 0.01);
 		pid.setOutputLowerLimit(-INF_FLOAT);
 		pid.setOutputUpperLimit(INF_FLOAT);
 		pid.setDesiredPoint(0);
@@ -80,7 +80,7 @@ public:
 class BallBalance
 {
 	UartNum<float, 1> uartPos;
-	Motor9250 motor;
+	DRV8825 motor;
 	sky::PID pid;
 	
 	class AverageFilter :public SignalStream<float, __FILTER_WINDOW_SIZE>
@@ -112,38 +112,24 @@ class BallBalance
 			pos = *(uartPosIn->getNum());
 			pos = filter.getFilterOut(pos);
 		}
-		float angle = pid.refresh(pos);
-		limit<float>(angle, -90, 90);
+		float pct = pid.refresh(pos);
+		limit<float>(pct, -100, 100);
 #ifdef __BALL_BALANCE_DEBUG
-		float outData[] = { pos ,angle ,timer.getFps(),motor.getAngle() };
-		uartOut.sendOscilloscope(outData, 4);
+		float outData[] = { pos ,pct ,timer.getFps() };
+		uartOut.sendOscilloscope(outData, 3);
 #endif
-		motor.setTarget(angle);
-
-
-
-		//static float i = 0, increase = 0.5;
-		//servo.setPct(i);
-		//i += increase;
-		//if (i > 100 || i < 0)
-		//{
-		//	increase = -increase;
-		//}
-		//uartOut.sendOscilloscope(&i, 1);
-
-		//servo.setPct(50);
+		motor.setPercent(pct);
 	}
 
 public:
-	BallBalance(Uart* uartPosIn, Gpio *motorPinA, Gpio *motorPinB,
-		Gpio *motorPinPwm, SoftI2c *i2c, float refreshInterval = 0.01
+	BallBalance(Uart* uartPosIn, Gpio *motorPinPwm, Gpio *motorPinDir
+		/*,SoftI2c *i2c,*//* float refreshInterval = 0.01*/
 #ifdef __BALL_BALANCE_DEBUG
 		, Uart* uartDebug = &uart1
 #endif
 	) :
 		uartPos(uartPosIn),
-		motor(motorPinA, motorPinB, 
-			motorPinPwm, i2c, refreshInterval)
+		motor(motorPinPwm, motorPinDir)
 #ifdef __BALL_BALANCE_DEBUG
 		, uartOut(uartDebug)
 #endif
@@ -155,7 +141,7 @@ public:
 	{
 		//初始化PID
 		pid.setRefreshRate(30);
-		pid.setWeights(0.06, 0.05, 0.04);
+		pid.setWeights(0.01, 0, 0);
 		pid.setOutputLowerLimit(-INF_FLOAT);
 		pid.setOutputUpperLimit(INF_FLOAT);
 		pid.setISeperateThres(60);
@@ -163,7 +149,7 @@ public:
 
 		//初始化电机
 		motor.begin();
-		motor.setTarget(0);
+		motor.setPercent(0);
 		
 		//初始化数据传入串口
 		uartPos.begin(115200);
@@ -175,15 +161,6 @@ public:
 #endif
 	}
 
-	void motorRefresh()
-	{
-		motor.refresh();
-	}
-
-	float getAngle()
-	{
-		return motor.getAngle();
-	}
 
 	void setTarget(float pos)
 	{

@@ -22,7 +22,8 @@ UartVscan uartvscan(&uart1);
 FpsCounter timer;
 //Mpu9250_Ahrs mpu(&si2c2);
 //Motor9250 motor(&PB14, &PB15, &PA6, &si2c2, 0.01);
-BallBalance ballBalance(&uart2, &PB14, &PB15, &PA6, &si2c2, 0.01);
+//Motor9250 motor(&PC9, &PB8, &si2c2, 0.01);
+BallBalance ballBalance(&uart2, &PB8, &PC9);
 
 void setup()
 {
@@ -37,12 +38,12 @@ void setup()
 	//mpu.set_parameter(2, 0.005, 100);
 	//mpu.begin(400000);
 
-	timer.begin();
+	//timer.begin();
 }
 int main(void)
 {
     setup();
-	float data[4];
+	//float data[4];
 	//float increase = 0.2, target = 0;
     while(1)
     {
@@ -53,18 +54,17 @@ int main(void)
 		//}
 		//motor.setTarget(target);
 		//motor.refresh();
-		ballBalance.motorRefresh();
+		//ballBalance.motorRefresh();
 
-		//mpu.AHRS_Dataprepare();
-		//mpu.AHRSupdate();
+		//mpu.ahrs_dataprepare();
+		//mpu.ahrs_update();
 		//mpu.get_data_ahrs(data, data + 1, data + 2);
 
 		
 
-		delay_ms(2);
-		//data[0] = ballBalance.getAngle();
-		//data[1]=timer.getFps();
-		//uartvscan.sendOscilloscope(data, 2);
+		//delay_ms(2);
+		//data[3]=timer.getFps();
+		//uartvscan.sendOscilloscope(data, 4);
 
 	}
 
